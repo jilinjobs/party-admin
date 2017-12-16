@@ -1,0 +1,16 @@
+
+.el-menu-item [class^=gaf-icon],.el-submenu [class^=gaf-icon] {
+  vertical-align: middle;
+  margin-right: 5px;
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
+}
+.el-main {
+  padding: 0;
+}
+.el-footer {
+  color: #999;
+  background: #fff;
+  border-top: solid 1px #e6e6e6;
+}
