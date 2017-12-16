@@ -6,7 +6,8 @@
             <i class="el-icon-download" v-on:click="down"></i>
           </el-header>
           <el-main>
-          <el-table v-loading="loading" :data="dataSource" border style="width: 100%;overflow: auto;" size="mini">    
+          <el-table v-loading="loading" :data="dataSource" border style="width: 100%;overflow: auto;" size="mini">  
+            <el-table-column type="index" width="50"></el-table-column>  
             <el-table-column label="姓名" width="60">
               <template slot-scope="scope">
                 <a :href="'/party/admin/image/'+scope.row.id+'/'+scope.row.image" target="_blank">{{scope.row.xm}}</a>
@@ -46,7 +47,7 @@ export default {
     };
   },
   mounted() {
-    this.partyForm = this.$root.currentData;
+    this.query();
   },
   methods: {
     async query() {
