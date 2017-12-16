@@ -115,5 +115,6 @@ export default {
 }
 .el-table {
   height: 100%;
+  overflow: auto;
 }
 </style>
