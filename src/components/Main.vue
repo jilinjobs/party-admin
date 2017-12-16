@@ -6,7 +6,7 @@
             <i class="el-icon-download" v-on:click="down"></i>
           </el-header>
           <el-main>
-          <el-table v-loading="loading" :data="dataSource" border style="width: 100%" size="mini">    
+          <el-table v-loading="loading" :data="dataSource" border style="width: 100%;overflow: auto;" size="mini">    
             <el-table-column label="姓名" width="60">
               <template slot-scope="scope">
                 <a :href="'/party/admin/image/'+scope.row.id+'/'+scope.row.image" target="_blank">{{scope.row.xm}}</a>
