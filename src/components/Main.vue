@@ -103,7 +103,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style <style lang="less">
+<style lang="less">
 .container {
   width: 100%;
   height: 100%;
