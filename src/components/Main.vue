@@ -17,7 +17,7 @@
             <el-table-column prop="szdzb" label="所在党支部" width="180"></el-table-column>
             <el-table-column prop="sjh" label="手机号" width="100"></el-table-column>
             <el-table-column prop="gddh" label="固定电话" width="100"></el-table-column>
-            <el-table-column prop="jdzz" label="家庭住址" width="120"></el-table-column>
+            <el-table-column prop="jtzz" label="家庭住址" width="120"></el-table-column>
             <el-table-column prop="wclx" label="外出流向" width="120"></el-table-column>
             <el-table-column prop="type" label="是否迁出" width="80"></el-table-column>
             <el-table-column prop="qwdmc" label="迁往地党组" width="120"></el-table-column>
