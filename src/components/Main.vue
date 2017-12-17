@@ -3,7 +3,8 @@
           <el-header height="36px" style="line-height:36px;">
             <span>流动党员信息</span>
             <i class="el-icon-refresh" v-on:click="query"></i>
-            <i class="el-icon-download" v-on:click="down"></i>
+            <el-button icon="el-icon-download" type="text" v-on:click="downCsv">下载表格</el-button>
+            <el-button icon="el-icon-download" type="text" v-on:click="downImg">下载图片</el-button>
           </el-header>
           <el-main>
           <el-table v-loading="loading" :data="dataSource" border style="width: 100%;overflow: auto;" size="mini">  
@@ -93,6 +94,12 @@ export default {
         message: "功能未实现",
         duration: 1000
       });
+    },
+    downImg() {
+      window.open('/party/admin/exportImg', '_blank');
+    },
+    downCsv() {
+      window.open('/party/admin/exportCsv', '_blank');
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
