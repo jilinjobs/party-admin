@@ -99,7 +99,7 @@ export default {
       window.open('/party/admin/exportImg', '_blank');
     },
     downCsv() {
-      window.open('/party/admin/exportCsv', '_blank');
+      window.open('/party/admin/exportCsv?page='+this.page+'&size='+this.size, '_blank');
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
