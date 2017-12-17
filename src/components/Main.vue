@@ -23,7 +23,11 @@
             <el-table-column prop="qwdmc" label="迁往地党组" width="120"></el-table-column>
             <el-table-column prop="qwdlxr" label="迁往地联系人" width="80"></el-table-column>
             <el-table-column prop="qwdlxdh" label="迁往地联系电话" width="100"></el-table-column>
-            <el-table-column prop="create_time" label="填报时间" width="100"></el-table-column>
+            <el-table-column prop="create_time" label="填报时间" width="100">
+              <template slot-scope="scope">
+                <span>{{formatDate(scope.row.create_time)}}</span>
+              </template>              
+            </el-table-column>
           </el-table>
           </el-main>
           <el-footer height="36px"> 
@@ -36,6 +40,9 @@
 
 <script>
 import api from "@/api";
+import moment from "moment";
+
+moment.locale('zh-cn');
 
 export default {
   data() {
@@ -99,6 +106,9 @@ export default {
       console.log(`当前页: ${val}`);
       this.page = val;
       this.query();
+    },
+    formatDate(date) {
+      return moment(date).format('lll');
     }
   }
 };
