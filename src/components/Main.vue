@@ -232,7 +232,7 @@ export default {
 }
 @media print{
   .footer, .container{
-    display: none;
+    display: none !important;
   }
   .printview{
     display: block;
