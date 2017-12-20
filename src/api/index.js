@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 export default {
-  async query ({page,size}) {
-    const res = await axios.post('/party/admin/query', {page,size});
+  async query ({ page, size, field, value }) {
+    const res = await axios.post('/party/admin/query', { page, size, field, value });
     return res.data;
   },
 

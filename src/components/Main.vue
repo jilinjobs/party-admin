@@ -3,10 +3,18 @@
 	  		<el-container class="container">
           <el-header height="36px" style="line-height:36px;">
             <span>流动党员信息</span>
-            <i class="el-icon-refresh" v-on:click="query"></i>
             <el-button icon="el-icon-download" type="text" v-on:click="downCsv">下载表格</el-button>
             <el-button icon="el-icon-download" type="text" v-on:click="downImg">下载图片</el-button>
             <el-button icon="el-icon-printer" type="text" v-on:click="print">打印</el-button>
+            <div class="filter-box">
+            <el-input placeholder="请输入内容" v-model="fieldValue" class="input-with-select" :clearable="true" size="mini">
+              <el-select v-model="fieldName" slot="prepend" placeholder="请选择" width="110">
+                <el-option label="姓名" value="xm"></el-option>
+                <el-option label="身份证号" value="sfzh"></el-option>
+              </el-select>
+              <el-button slot="append" icon="el-icon-search" v-on:click="query"></el-button>
+            </el-input>
+            </div>            
           </el-header>
           <el-main>
           <el-table v-loading="loading" :data="dataSource" border style="width: 100%;overflow: auto;" size="mini">  
@@ -131,7 +139,9 @@ export default {
       dataSource: [],
       total: 0,
       page: 1,
-      size: 20
+      size: 20,
+      fieldName: '',
+      fieldValue: '',
     };
   },
   mounted() {
@@ -141,7 +151,7 @@ export default {
     async query() {
       this.loading = true;
       try {
-        const res = await api.query({ page: this.page, size: this.size });
+        const res = await api.query({ page: this.page, size: this.size, field: this.fieldName, value: this.fieldValue });
         console.log(res);
         if (res.errcode === 0) {
           this.$message({
@@ -220,6 +230,13 @@ export default {
 .el-table {
   height: 100%;
   overflow: auto;
+}
+.filter-box{
+  width: 280px;
+  display: inline-block;
+  .el-select {
+    width: 100px;
+  }
 }
 .printview{
   display: none;
