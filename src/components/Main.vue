@@ -3,7 +3,7 @@
 	  		<el-container class="container">
           <el-header height="36px" style="line-height:36px;">
             <span>流动党员信息</span>
-            <el-button icon="el-icon-download" type="text" v-on:click="downCsv">下载表格</el-button>
+            <el-button icon="el-icon-download" type="text" v-on:click="downTable">下载表格</el-button>
             <el-button icon="el-icon-download" type="text" v-on:click="downImg">下载图片</el-button>
             <el-button icon="el-icon-printer" type="text" v-on:click="print">打印</el-button>
             <div class="filter-box">
@@ -190,8 +190,8 @@ export default {
         "_blank"
       );
     },
-    downCsv() {
-      window.open("/party/admin/exportCsv", "_blank");
+    downTable() {
+      window.open("/party/admin/exportXlsx", "_blank");
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
