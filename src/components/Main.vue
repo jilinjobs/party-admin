@@ -39,7 +39,31 @@
                 <span>{{formatDate(scope.row.create_time)}}</span>
               </template>              
             </el-table-column>
+            <el-table-column label="分组" width="120">
+              <template slot-scope="scope">
+                <el-tag size="mini">{{ scope.row.group }}</el-tag>
+                <el-button @click.native.prevent="selectedRow = scope.$index; dialogVisible=true;"
+                  type="text" size="small">修改</el-button>
+              </template>
+            </el-table-column>
           </el-table>
+          <el-dialog
+            title="设置分组"
+            :visible.sync="dialogVisible"
+            :close-on-click-modal="false"
+            width="30%">
+            <el-autocomplete
+              class="inline-input"
+              v-model="selectedGroup"
+              :fetch-suggestions="querySearch"
+              placeholder="请输入分组"
+              @select="handleSelect"
+            ></el-autocomplete>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="dialogVisible = false">取 消</el-button>
+              <el-button type="primary" @click="handleSetGroup">确 定</el-button>
+            </span>
+          </el-dialog>
           </el-main>
           <el-footer height="36px"> 
           <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange"
@@ -142,10 +166,15 @@ export default {
       size: 20,
       fieldName: '',
       fieldValue: '',
+      dialogVisible: false,
+      selectedGroup: null,
+      groups: [],
+      selectedRow: -1,
     };
   },
   mounted() {
     this.query();
+    this.groups = this.$root.groups.map(p=>({value: p}));
   },
   methods: {
     async query() {
@@ -211,6 +240,45 @@ export default {
     },
     print() {
       window.print();
+    },
+    async handleSetGroup() {
+      const row = this.dataSource[this.selectedRow];
+      console.log(row);
+      this.loading = true;
+      try {
+        const res = await api.group({ id: row.id, group: this.selectedGroup });
+        console.log(res);
+        if (res.errcode === 0) {
+          console.log('设置分组成功!');
+          row.group = this.selectedGroup;
+          if(this.groups.findIndex(p=>p.value==this.selectedGroup) == -1){
+            this.groups.push({value: this.selectedGroup});
+          }
+          this.$set(this.dataSource, this.selectedRow, row)
+          this.selectedRow = -1;
+          this.dialogVisible = false;
+        } else {
+          this.$notify.error({
+            title: "设置分组失败",
+            message: res.errmsg
+          });
+        }
+      } catch (err) {
+        console.error(err);
+        this.$notify.error({
+          title: "设置分组失败",
+          message: err.message || "处理失败"
+        });
+      } finally {
+        this.loading = false;
+      }
+    },
+    querySearch(queryString, cb) {
+      // 调用 callback 返回建议列表的数据
+      cb(this.groups);
+    },
+    handleSelect(item) {
+      console.log(item);
     }
   }
 };

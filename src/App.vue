@@ -14,7 +14,8 @@ export default {
   name: 'app',
   data() {
     return {
-      login: false
+      login: false,
+      groups: [],
     }
   }
 }

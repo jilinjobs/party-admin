@@ -10,4 +10,9 @@ export default {
     const res = await axios.post(`/party/admin/login`, {username, password});
     return res.data;
   },
+
+  async group ({ id, group }) {
+    const res = await axios.post('/party/admin/group', { id, group });
+    return res.data;
+  },
 }

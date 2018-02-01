@@ -58,6 +58,7 @@ export default {
               duration: 1000
             });
             this.$root.login = true;
+            this.$root.groups = res.groups || [];
             this.$router.push("/");
           } else {
             this.$notify.error({
