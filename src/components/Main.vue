@@ -7,13 +7,15 @@
             <el-button icon="el-icon-download" type="text" v-on:click="downImg">下载图片</el-button>
             <el-button icon="el-icon-printer" type="text" v-on:click="print">打印</el-button>
             <div class="filter-box">
-            <el-input placeholder="请输入内容" v-model="fieldValue" class="input-with-select" :clearable="true" size="mini">
+            <el-autocomplete placeholder="请输入内容" v-model="fieldValue" class="input-with-select" :clearable="true" size="mini"
+              :fetch-suggestions="querySearch2">
               <el-select v-model="fieldName" slot="prepend" placeholder="请选择" width="110">
-                <el-option label="姓名" value="xm"></el-option>
+                <el-option label="姓名" value="xm"></el-option> 
                 <el-option label="身份证号" value="sfzh"></el-option>
+                <el-option label="分组" value="group"></el-option>
               </el-select>
               <el-button slot="append" icon="el-icon-search" v-on:click="query"></el-button>
-            </el-input>
+            </el-autocomplete>
             </div>            
           </el-header>
           <el-main>
@@ -276,6 +278,13 @@ export default {
     querySearch(queryString, cb) {
       // 调用 callback 返回建议列表的数据
       cb(this.groups);
+    },
+    querySearch2(queryString, cb) {
+      // 调用 callback 返回建议列表的数据
+      if(this.fieldName == 'group')
+        cb(this.groups);
+      else
+        cb([]);
     },
     handleSelect(item) {
       console.log(item);
