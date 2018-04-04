@@ -80,8 +80,6 @@
         <el-row>
           <el-col :span="24">
             <el-row>
-              <el-col :span="3" class="label">#</el-col>
-              <el-col :span="4" class="text">{{item.bh}}</el-col>
               <el-col :span="3" class="label">序号</el-col>
               <el-col :span="4" class="text">{{item.xh}}</el-col>
               <el-col :span="3" class="label">姓名</el-col>
