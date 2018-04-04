@@ -21,6 +21,7 @@
           <el-main>
           <el-table v-loading="loading" :data="dataSource" border style="width: 100%;overflow: auto;" size="mini">  
             <el-table-column type="index" width="50"></el-table-column>  
+            <el-table-column prop="xh" label="序号" width="60"></el-table-column>
             <el-table-column label="姓名" width="60">
               <template slot-scope="scope">
                 <a :href="'/party/admin/image/'+scope.row.id+'/'+scope.row.image" target="_blank">{{scope.row.xm}}</a>
@@ -79,8 +80,10 @@
         <el-row>
           <el-col :span="24">
             <el-row>
-              <el-col :span="3" class="label">编号</el-col>
+              <el-col :span="3" class="label">#</el-col>
               <el-col :span="4" class="text">{{item.bh}}</el-col>
+              <el-col :span="3" class="label">序号</el-col>
+              <el-col :span="4" class="text">{{item.xh}}</el-col>
               <el-col :span="3" class="label">姓名</el-col>
               <el-col :span="4" class="text">{{item.xm}}</el-col>
               <el-col :span="3" class="label">身份证号</el-col>
